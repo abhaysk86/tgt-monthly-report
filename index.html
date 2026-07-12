@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TGT Monthly Report — June 2026</title>
+<style>
+:root{
+  --green:#16a34a;--gd:#166534;--gp:#dcfce7;--gl:#f0fdf4;
+  --s900:#0f172a;--s700:#334155;--s600:#475569;--s400:#94a3b8;--s200:#e2e8f0;--s100:#f1f5f9;
+  --white:#ffffff;--bg:#f8fafc;
+  --amber:#d97706;--al:#fffbeb;--ab:#fef3c7;
+  --red:#dc2626;--rl:#fef2f2;--rb:#fecaca;
+  --blue:#2563eb;--bl:#eff6ff;
+  --pink:#db2777;--pl:#fdf2f8;
+  --hh:60px;--nh:44px;
+  --radius:10px;--shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--s900);font-size:14px;line-height:1.5;}
+
+/* ── HEADER ── */
+.sh{position:sticky;top:0;z-index:200;background:var(--s900);
+  display:flex;align-items:center;gap:14px;padding:0 24px;height:var(--hh);
+  box-shadow:0 1px 3px rgba(0,0,0,.4);}
+.sh img{height:38px;width:38px;border-radius:50%;object-fit:cover;
+  border:2px solid rgba(255,255,255,.2);flex-shrink:0;background:#1e3a2e;}
+.sh-org{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:1px;}
+.sh-title{font-size:15px;font-weight:700;color:var(--white);}
+.sh-r{margin-left:auto;text-align:right;}
+.sh-month{font-size:13px;font-weight:700;color:var(--white);}
+.sh-gen{font-size:9px;color:rgba(255,255,255,.4);margin-top:1px;}
+.sh-badge{display:inline-block;background:var(--green);color:white;font-size:8px;
+  font-weight:700;padding:2px 7px;border-radius:10px;letter-spacing:.5px;text-transform:uppercase;margin-left:8px;}
+
+/* ── TAB NAV ── */
+.tn{position:sticky;top:var(--hh);z-index:199;background:var(--white);
+  border-bottom:1px solid var(--s200);display:flex;overflow-x:auto;
+  scrollbar-width:none;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+.tn::-webkit-scrollbar{display:none;}
+.tb{flex-shrink:0;background:none;border:none;border-bottom:2px solid transparent;
+  color:var(--s600);font-size:12.5px;font-weight:600;padding:0 18px;height:var(--nh);
+  cursor:pointer;white-space:nowrap;letter-spacing:.1px;transition:all .15s;}
+.tb:hover{color:var(--gd);background:var(--gl);}
+.tb.active{color:var(--gd);border-bottom-color:var(--green);background:var(--gl);}
+
+/* ── PANES ── */
+.tp{display:none;padding:28px 24px 60px;max-width:1000px;margin:0 auto;}
+.tp.active{display:block;}
+
+/* ── SECTION HEADERS ── */
+.ey{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--green);margin-bottom:3px;}
+.st{font-size:22px;font-weight:700;color:var(--s900);margin-bottom:20px;
+  padding-bottom:10px;border-bottom:1px solid var(--s200);}
+
+/* ── STAT CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px;}
+.card{background:var(--white);border:1px solid var(--s200);border-radius:var(--radius);
+  padding:20px 16px;text-align:center;box-shadow:var(--shadow);transition:box-shadow .2s;}
+.card:hover{box-shadow:var(--shadow-md);}
+.card.g{background:var(--gl);border-color:var(--gp);}
+.card.a{background:var(--al);border-color:var(--ab);}
+.card.r{background:var(--rl);border-color:var(--rb);}
+.card.b{background:var(--bl);border-color:#bfdbfe;}
+.cn{font-size:28px;font-weight:800;color:var(--gd);line-height:1;margin-bottom:5px;}
+.card.a .cn{color:var(--amber);}.card.r .cn{color:var(--red);}.card.b .cn{color:var(--blue);}
+.cl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--s400);}
+.cs{font-size:10px;color:var(--s400);margin-top:3px;}
+
+/* ── COMMITTEE ── */
+.mcg{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:10px;margin-bottom:22px;}
+.mc{background:var(--white);border:1px solid var(--s200);border-radius:var(--radius);
+  padding:14px 8px;text-align:center;box-shadow:var(--shadow);}
+.mc img{width:54px;height:54px;border-radius:50%;object-fit:cover;
+  border:3px solid var(--gp);display:block;margin:0 auto 9px;}
+.mc-r{font-size:8px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--green);margin-bottom:2px;}
+.mc-n{font-size:10.5px;font-weight:700;color:var(--s900);line-height:1.25;margin-bottom:2px;}
+.mc-f{font-size:9px;color:var(--s400);}
+
+/* ── COMMS ── */
+.cg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.cg3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.cc{background:var(--white);border:1px solid var(--s200);border-radius:var(--radius);
+  padding:12px 14px;box-shadow:var(--shadow);}
+.cc-h{font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--s600);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid var(--s200);}
+.cc-l{font-size:10.5px;color:var(--s600);padding:2.5px 0;display:flex;gap:8px;align-items:flex-start;}
+.cc-k{color:var(--s400);min-width:80px;font-size:9.5px;flex-shrink:0;}
+.cc-v{font-weight:600;color:var(--s900);}
+.cc-note{font-size:9px;color:var(--amber);margin-top:6px;font-weight:600;}
+
+/* ── MONTH TABLE ── */
+.mt{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px;
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.mt th{background:var(--s900);color:var(--white);padding:10px 12px;font-weight:600;font-size:10.5px;letter-spacing:.3px;}
+.mt th.cat{text-align:left;}.mt th.amt{text-align:right;min-width:110px;}
+.mt td{padding:6px 12px;border-bottom:1px solid var(--s100);background:var(--white);vertical-align:middle;}
+.mt td.r{text-align:right;}.mt td.ind{padding-left:24px;color:var(--s700);}
+.mt td.emp{color:var(--s400);font-style:italic;}
+.mt tr:nth-child(even):not(.hdr,.scr,.sdr,.sinc,.net,.psf,.bh,.bo,.bc) td{background:var(--s100);}
+.mt tr.hdr td{background:var(--gd);color:var(--white);font-weight:700;font-size:10.5px;letter-spacing:.5px;padding:8px 12px;}
+.mt tr.scr td{background:var(--gl);font-weight:700;color:var(--gd);border-top:2px solid var(--gp);font-size:12px;}
+.mt tr.sdr td{background:#fff5f5;font-weight:700;color:var(--red);border-top:2px solid var(--rb);font-size:12px;}
+.mt tr.sinc td{background:var(--bl);font-weight:700;color:var(--blue);border-top:2px solid #bfdbfe;font-size:12px;}
+.mt tr.net td{background:var(--s900);color:var(--white);font-weight:800;font-size:13px;border-top:none;}
+.mt tr.psf td{background:var(--gd);color:var(--white);font-weight:800;font-size:15px;text-align:right;}
+.mt tr.bh td{background:#1e293b;color:rgba(255,255,255,.65);font-size:9px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;padding:5px 12px;}
+.mt tr.bo td{background:var(--gl);font-weight:600;color:var(--gd);font-size:12px;}
+.mt tr.bc td{background:var(--gd);color:var(--white);font-weight:800;font-size:13px;border-top:2px solid var(--green);}
+.vnd{color:var(--s400);font-size:9px;display:block;font-weight:400;}
+
+/* ── DC TABLE (Collections) ── */
+.dc{width:100%;border-collapse:collapse;font-size:13px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.dc th{background:var(--s900);color:var(--white);padding:11px 16px;text-align:left;font-size:11px;font-weight:600;}
+.dc th.r{text-align:right;}
+.dc td{padding:13px 16px;border-bottom:1px solid var(--s200);background:var(--white);}
+.dc td.r{text-align:right;font-weight:700;}
+.dc tr:nth-child(even) td{background:var(--s100);}
+.dcm{font-size:14px;font-weight:700;color:var(--s900);}
+.pill{display:inline-block;background:var(--gl);color:var(--gd);font-size:11.5px;
+  font-weight:700;padding:3px 12px;border-radius:20px;border:1px solid var(--gp);}
+
+/* ── PENDING DUES ── */
+.pd{width:100%;border-collapse:collapse;font-size:12px;}
+.pd th{background:#991b1b;color:var(--white);padding:9px 14px;text-align:left;
+  font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.pd th.r{text-align:right;}
+.pd td{padding:11px 14px;border-bottom:1px solid var(--rb);background:var(--white);}
+.pd td.r{text-align:right;font-weight:700;color:var(--red);}
+.pd-apt{font-size:13px;font-weight:700;color:#991b1b;}
+.pd-note{font-size:9px;color:var(--s400);margin-top:2px;font-style:italic;}
+
+/* ── HELPDESK ── */
+.cat-row{display:flex;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid var(--s100);}
+.cat-n{width:150px;font-size:12px;color:var(--s700);}
+.cat-bw{flex:1;background:var(--gl);border-radius:4px;height:14px;overflow:hidden;}
+.cat-b{height:100%;border-radius:4px;background:var(--green);}
+.cat-c{width:32px;text-align:right;font-size:12px;font-weight:700;color:var(--gd);}
+.cat-p{width:42px;text-align:right;font-size:10px;color:var(--s400);}
+
+/* ── HIGHLIGHTS ── */
+.hl-cat{margin-bottom:20px;}
+.hl-cat-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;
+  padding-bottom:6px;border-bottom:1px solid var(--s200);}
+.hl-cat-icon{font-size:18px;}
+.hl-cat-title{font-size:14px;font-weight:700;color:var(--s900);}
+.hl-items{display:grid;grid-template-columns:1fr 1fr;gap:5px 24px;}
+.hl-item{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--s700);padding:3px 0;line-height:1.45;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;margin-top:5px;}
+
+/* ── PHOTO GRID ── */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;}
+.pw{border-radius:var(--radius);overflow:hidden;border:1px solid var(--s200);
+  box-shadow:var(--shadow);background:var(--s100);}
+.pw img{width:100%;height:120px;object-fit:cover;display:block;}
+.pw-cap{font-size:10px;color:var(--s600);text-align:center;padding:5px 8px;
+  background:var(--white);font-weight:500;}
+
+/* ── CALLOUTS ── */
+.ca{padding:12px 16px;border-radius:0 var(--radius) var(--radius) 0;font-size:12.5px;line-height:1.65;margin-bottom:10px;}
+.ca.am{background:var(--al);border-left:4px solid var(--amber);}
+.ca.ye{background:#fefce8;border-left:4px solid #ca8a04;}
+.ca.pk{background:var(--pl);border-left:4px solid var(--pink);}
+.ca.rd{background:var(--rl);border:1px solid var(--rb);border-radius:var(--radius);padding:16px 20px;}
+.ca.df{background:var(--al);border-left:4px solid var(--amber);border-radius:0 8px 8px 0;font-size:11.5px;}
+.cah{font-size:11px;font-weight:700;color:#991b1b;letter-spacing:.5px;margin-bottom:10px;}
+strong.am{color:var(--amber);}strong.ye{color:#92400e;}strong.pk{color:var(--pink);}
+
+/* ── SUMMARY BOX ── */
+.sumbox{background:var(--white);border:1px solid var(--s200);border-radius:var(--radius);
+  padding:20px 22px;box-shadow:var(--shadow);font-size:13px;line-height:1.8;color:var(--s700);}
+
+/* ── FOOTER ── */
+.sf{background:var(--s900);color:rgba(255,255,255,.45);padding:14px 24px;font-size:10px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-top:30px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .tb{font-size:11.5px;padding:0 14px;}
+  .tp{padding:18px 14px 50px;}
+  .cg2,.cg3{grid-template-columns:1fr;}
+  .hl-items{grid-template-columns:1fr;}
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .mcg{grid-template-columns:repeat(3,1fr);}
+  .photo-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+<header class="sh">
+  <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/TGT%20Logo.jpeg" alt="TGT" onerror="this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Crect%20width%3D%2240%22%20height%3D%2240%22%20fill%3D%22%23166534%22%20rx%3D%2220%22/%3E%3Ctext%20x%3D%2220%22%20y%3D%2226%22%20font-size%3D%2212%22%20text-anchor%3D%22middle%22%20fill%3D%22white%22%20font-family%3D%22Arial%22%3ETGT%3C/text%3E%3C/svg%3E'">
+  <div>
+    <div class="sh-org">The Green Terraces &nbsp;&middot;&nbsp; TGT AOA</div>
+    <div class="sh-title">Monthly Management Report<span class="sh-badge">FY 2026&ndash;27</span></div>
+  </div>
+  <div class="sh-r">
+    <div class="sh-month">June 2026</div>
+    <div class="sh-gen">Generated 13 Jul 2026, 12:33 AM</div>
+  </div>
+</header>
+<nav class="tn"><button class="tb  active" data-tab="overview">Overview</button><button class="tb" data-tab="team">Team TGT</button><button class="tb" data-tab="financials">Financials</button><button class="tb" data-tab="maintenance">Maintenance</button><button class="tb" data-tab="collections">Collections</button><button class="tb" data-tab="helpdesk">Helpdesk</button><button class="tb" data-tab="community">Community</button></nav>
+<main><section id="overview" class="tp  active">
+<div class="ey">TGT AOA · June 2026</div>
+<div class="st">Monthly Overview</div>
+<div class="cards">
+  <div class="card g">
+    <div class="cn">99.7%</div>
+    <div class="cl">Collection Rate</div>
+    <div class="cs">Maintenance · June</div>
+  </div>
+  <div class="card r">
+    <div class="cn" style="font-size:20px"><span style="color:var(--red)">(&#8377;2,37,657) &#9660;</span></div>
+    <div class="cl">Surplus / (Deficit)</div>
+    <div class="cs">June · Income vs Expense</div>
+  </div>
+  <div class="card b">
+    <div class="cn">91%</div>
+    <div class="cl">Helpdesk Resolved</div>
+    <div class="cs">135 of 148 tickets</div>
+  </div>
+  <div class="card g">
+    <div class="cn" style="font-size:18px">&#8377;11,739</div>
+    <div class="cl">Bank Balance</div>
+    <div class="cs">Closing · June</div>
+  </div>
+</div>
+<div class="sumbox">
+  <strong style="font-size:15px;color:var(--s900);display:block;margin-bottom:8px;">
+    Monthly Management Report &mdash; June 2026
+  </strong>
+  Published by the TGT Apartment Owners Association Management Committee for the
+  393 residents of The Green Terraces, Electronic City Phase 1, Bangalore.<br>
+  Navigate using the tabs above &mdash; financials, maintenance costs, collection
+  status, helpdesk performance, and community highlights.
+</div>
+</section><section id="team" class="tp">
+<div class="ey">Management Committee 2026&#8211;27</div>
+<div class="st">Team TGT</div>
+<div class="mcg">
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Manoj.JPG" alt="MJ" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>MJ</text></svg>'">
+    <div class="mc-r">President</div>
+    <div class="mc-n">Mr. Manoj Ambikan</div>
+    <div class="mc-f">B-1905</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Sujith.jpg" alt="SS" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>SS</text></svg>'">
+    <div class="mc-r">Vice President</div>
+    <div class="mc-n">Mr. Sujith Sajeeve</div>
+    <div class="mc-f">B-1403</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Abhay.png" alt="AK" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>AK</text></svg>'">
+    <div class="mc-r">Secretary</div>
+    <div class="mc-n">Mr. Abhay Kapoor</div>
+    <div class="mc-f">B-604</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Sudeep.jpg" alt="SB" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>SB</text></svg>'">
+    <div class="mc-r">Treasurer</div>
+    <div class="mc-n">Mr. Sudeep Bhargava</div>
+    <div class="mc-f">A-1903</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Vishakha.jpg" alt="VD" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>VD</text></svg>'">
+    <div class="mc-r">Committee Member</div>
+    <div class="mc-n">Mrs. Vishakha Deo</div>
+    <div class="mc-f">A-1501</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Shabnam.jpg" alt="SBK" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>SBK</text></svg>'">
+    <div class="mc-r">Committee Member</div>
+    <div class="mc-n">Mrs. Shabnam Balakrishnan</div>
+    <div class="mc-f">B-1709</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Rajnandini.jpg" alt="RV" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>RV</text></svg>'">
+    <div class="mc-r">Committee Member</div>
+    <div class="mc-n">Mrs. Rajnandini Verma</div>
+    <div class="mc-f">B-301</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Dhrubo.jpg" alt="DB" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>DB</text></svg>'">
+    <div class="mc-r">Committee Member</div>
+    <div class="mc-n">Mr. Dhrubojyoti Banerjee</div>
+    <div class="mc-f">B-310</div>
+  </div>
+  <div class="mc">
+    <img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Committee%20Details/Sandeep.png" alt="SD" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 54 54%22><rect width=%2254%22 height=%2254%22 fill=%22%232e7d32%22 rx=%2227%22/><text x=%2227%22 y=%2233%22 font-size=%2215%22 text-anchor=%22middle%22 fill=%22white%22 font-family=%22Arial%22>SD</text></svg>'">
+    <div class="mc-r">Committee Member</div>
+    <div class="mc-n">Mr. Sandeep Dhir</div>
+    <div class="mc-f">B-1408</div>
+  </div>
+</div>
+<div class="cg2" style="margin-bottom:12px;">
+  <div class="cc">
+    <div class="cc-h">&#128680; Facility Emergency Contacts</div>
+    <div class="cc-l"><span class="cc-k">Electrician</span><span class="cc-v">70229 87993</span></div>
+    <div class="cc-l"><span class="cc-k">Plumber</span><span class="cc-v">99013 23551</span></div>
+    <div class="cc-l"><span class="cc-k">Club House</span><span class="cc-v">96119 99384</span></div>
+    <div class="cc-l"><span class="cc-k">Main Gate</span><span class="cc-v">73492 65472</span></div>
+    <div class="cc-l"><span class="cc-k">Society Office</span><span class="cc-v">080 4212 3648</span></div>
+    <div class="cc-l"><span class="cc-k">Estate Manager</span><span class="cc-v">Thimmesh &nbsp; 98861 09992</span></div>
+  </div>
+  <div class="cc">
+    <div class="cc-h">&#128172; WhatsApp Groups</div>
+    <div class="cc-l"><span class="cc-k">Facilities</span><span class="cc-v">TGT Facilities Issues</span></div>
+    <div class="cc-l"><span class="cc-k">Notices</span><span class="cc-v">TGT Notice Board</span></div>
+    <div class="cc-note">&#128247; Groups moved from Telegram to WhatsApp &mdash; June 2026</div>
+  </div>
+</div>
+<div class="cg3">
+  <div class="cc">
+    <div class="cc-h">&#128179; Payment &amp; Accounts</div>
+    <div class="cc-l"><span class="cc-k">Maintenance</span><span class="cc-v">Raise on MyGate</span></div>
+    <div class="cc-l"><span class="cc-k">Queries</span><span class="cc-v">tgtsecretary@gmail.com</span></div>
+    <div class="cc-l"><span class="cc-k">Finance</span><span class="cc-v">tgtfin@gmail.com</span></div>
+  </div>
+  <div class="cc">
+    <div class="cc-h">&#128203; Escalation Matrix</div>
+    <div class="cc-l"><span class="cc-k">Secretary</span><span class="cc-v">tgtsecretary@gmail.com</span></div>
+    <div class="cc-l"><span class="cc-k">President</span><span class="cc-v">tgtpresident@gmail.com</span></div>
+  </div>
+  <div class="cc">
+    <div class="cc-h">&#9993;&#65039; General Queries</div>
+    <div class="cc-l"><span class="cc-k">Email</span><span class="cc-v">tgtsecretary@gmail.com</span></div>
+    <div class="cc-note">Write to us for any residence-related queries.</div>
+  </div>
+</div>
+</section><section id="financials" class="tp">
+<div class="ey">Income &amp; Expenditure &mdash; YTD</div>
+<div class="st">Financial Summary</div>
+<table class="mt">
+  <thead><tr><th class="cat">Category</th><th class="amt">May</th><th class="amt">June</th></tr></thead>
+  <tbody>
+    <tr class="hdr"><td colspan="3">&#9650; INCOME (CR)</td></tr>
+    <tr><td class="ind">Coaching Revenue</td><td class="r">&#8377;2,982</td><td class="r">&#8377;1,426</td></tr><tr><td class="ind">FD Interest</td><td class="r">&#8377;76,020</td><td class="r">&#8377;79,771</td></tr><tr><td class="ind">Member Fee</td><td class="r">&#8377;16,27,531</td><td class="r">&#8377;16,23,556</td></tr><tr><td class="ind">Miscllaneous</td><td class="r">&#8377;1,080</td><td class="r">&#8377;886</td></tr><tr><td class="ind">Promotional Income</td><td class="r">&#8377;20,870</td><td class="r">&#8377;19,850</td></tr><tr><td class="ind">Rental Income</td><td class="r">&#8377;38,790</td><td class="r">&#8377;96,429</td></tr><tr><td class="ind">Vendor Electricity</td><td class="r">&#8377;13,432</td><td class="r emp">—</td></tr>
+    <tr class="scr"><td><strong>Total Income (CR)</strong></td><td class="r">&#8377;17,80,705</td><td class="r">&#8377;18,21,919</td></tr>
+    <tr class="hdr"><td colspan="3">&#9660; EXPENSES (DR)</td></tr>
+    <tr><td class="ind">Accountant Fee</td><td class="r">&#8377;13,455</td><td class="r">&#8377;13,455</td></tr><tr><td class="ind">Bank Charges</td><td class="r">&#8377;229</td><td class="r">&#8377;131</td></tr><tr><td class="ind">Electricity Bill</td><td class="r">&#8377;2,86,947</td><td class="r">&#8377;2,07,373</td></tr><tr><td class="ind">Facilities Maintenance</td><td class="r">&#8377;4,49,053</td><td class="r">&#8377;6,91,553</td></tr><tr><td class="ind">Landscaping</td><td class="r">&#8377;51,489</td><td class="r">&#8377;34,534</td></tr><tr><td class="ind">Miscllaneous</td><td class="r">&#8377;9,796</td><td class="r">&#8377;3,886</td></tr><tr><td class="ind">Other Repairs</td><td class="r">&#8377;1,27,300</td><td class="r">&#8377;71,060</td></tr><tr><td class="ind">Water Bill</td><td class="r">&#8377;4,03,820</td><td class="r">&#8377;4,35,540</td></tr><tr><td class="ind">Water Management</td><td class="r">&#8377;93,600</td><td class="r">&#8377;1,00,100</td></tr><tr><td class="ind">TDS Payment</td><td class="r">&#8377;24,800</td><td class="r">&#8377;11,711</td></tr><tr><td class="ind">GST Payment</td><td class="r">&#8377;10,534</td><td class="r">&#8377;9,009</td></tr><tr><td class="ind">Security Management</td><td class="r">&#8377;2,72,682</td><td class="r">&#8377;4,27,442</td></tr><tr><td class="ind">Diesel</td><td class="r emp">—</td><td class="r">&#8377;36,396</td></tr><tr><td class="ind">Pest Control</td><td class="r emp">—</td><td class="r">&#8377;14,986</td></tr><tr><td class="ind">Event Related Expense</td><td class="r emp">—</td><td class="r">&#8377;2,400</td></tr>
+    <tr class="sdr"><td><strong>Total Expenses (DR)</strong></td><td class="r">&#8377;17,43,705</td><td class="r">&#8377;20,59,576</td></tr>
+    <tr class="net"><td><strong>Surplus / (Deficit)</strong></td><td class="r"><span style="color:#86efac">&#9650;</span> &#8377;37,000</td><td class="r"><span style="color:#fca5a5">&#9660;</span> (&#8377;2,37,657)</td></tr>
+    <tr class="bh"><td colspan="3">&#127974; Bank Balance Reconciliation &nbsp;&middot;&nbsp; Opening + Surplus / (Deficit) = Closing</td></tr>
+    <tr class="bo"><td>Opening Bank Balance</td><td class="r">&#8377;2,12,396</td><td class="r">&#8377;2,49,396</td></tr>
+    <tr class="bc"><td>Closing Bank Balance (Actual)</td><td class="r">&#8377;2,49,396</td><td class="r">&#8377;11,739</td></tr>
+  </tbody>
+</table>
+</section><section id="maintenance" class="tp">
+<div class="ey">Cost Breakdown &amp; PSF Rate</div>
+<div class="st">Maintenance Calculation</div>
+<table class="mt">
+  <thead><tr>
+    <th class="cat">Line Item</th>
+    <th class="amt">Jun '26 (Actuals)</th>
+    <th class="amt">Jul '26 (Billing)</th>
+  </tr></thead>
+  <tbody>
+    <tr class="hdr"><td colspan="3">&#9660; COST ITEMS</td></tr>
+    <tr><td class="ind">Facilities Manpower+Management</td><td class="r">&#8377;4,76,943<span class="vnd">United</span></td><td class="r">&#8377;5,44,726<span class="vnd">United</span></td></tr><tr><td class="ind">Material & Other Services covred by UIS</td><td class="r">&#8377;1,61,241<span class="vnd">United</span></td><td class="r">&#8377;1,23,894<span class="vnd">United</span></td></tr><tr><td class="ind">Diesel Reimbursement</td><td class="r">&#8377;1,12,428<span class="vnd">United</span></td><td class="r">&#8377;79,039<span class="vnd">United</span></td></tr><tr><td class="ind">Water Supply Bills</td><td class="r">&#8377;4,35,540<span class="vnd">MLA & VBF</span></td><td class="r">&#8377;4,77,290<span class="vnd">MLA & VBF</span></td></tr><tr><td class="ind">STP & WTP Management</td><td class="r">&#8377;1,00,900<span class="vnd">SK Enviro</span></td><td class="r">&#8377;94,400<span class="vnd">SK Enviro</span></td></tr><tr><td class="ind">Landscape Management</td><td class="r">&#8377;34,829<span class="vnd">Bhavani</span></td><td class="r">&#8377;35,400<span class="vnd">Bhavani</span></td></tr><tr><td class="ind">Pest Control Management</td><td class="r">&#8377;14,986<span class="vnd">Bhavani</span></td><td class="r">&#8377;16,986<span class="vnd">Bhavani</span></td></tr><tr><td class="ind">Security Manpower+Management</td><td class="r">&#8377;2,56,473<span class="vnd">PIS</span></td><td class="r">&#8377;2,42,327<span class="vnd">PIS</span></td></tr><tr><td class="ind">Cleaning Machine+Manpower</td><td class="r">&#8377;18,065<span class="vnd">Nagaraj</span></td><td class="r">&#8377;19,800<span class="vnd">Nagaraj</span></td></tr><tr><td class="ind">Common Area Electricity</td><td class="r">&#8377;2,07,355<span class="vnd">BESCOM</span></td><td class="r">&#8377;2,50,000<span class="vnd">BESCOM</span></td></tr><tr><td class="ind">Events Expenses</td><td class="r">&#8377;2,400<span class="vnd">TGT</span></td><td class="r">&#8377;1,000<span class="vnd">TGT</span></td></tr><tr><td class="ind">Accounting Services</td><td class="r">&#8377;13,570<span class="vnd">Ajith</span></td><td class="r">&#8377;13,570<span class="vnd">Ajith</span></td></tr><tr><td class="ind">Lift Service Management</td><td class="r emp">—</td><td class="r emp">—</td></tr><tr><td class="ind">Other Materials/Service Payments</td><td class="r">&#8377;23,600<span class="vnd">Miscllaneous</span></td><td class="r emp">—</td></tr>
+    <tr class="sdr"><td><strong>Total Cost</strong></td>
+      <td class="r">&#8377;18,58,330</td>
+      <td class="r">&#8377;18,98,432</td></tr>
+    <tr class="hdr"><td colspan="3">&#9650; INCOME OFFSET</td></tr>
+    <tr><td class="ind">Amenities/Move-ins/Fines/Visitor charges</td><td class="r">&#8377;30,000</td><td class="r">&#8377;30,000</td></tr><tr><td class="ind">Promotional Income (Common Area Rentals/Notice Boards)</td><td class="r">&#8377;10,000</td><td class="r">&#8377;10,000</td></tr><tr><td class="ind">Resident Electricity Bill Reversal (EV charging)</td><td class="r">&#8377;10,860</td><td class="r">&#8377;11,978</td></tr><tr><td class="ind">Grocery Store</td><td class="r">&#8377;15,000</td><td class="r">&#8377;15,000</td></tr><tr><td class="ind">Creche' Rental</td><td class="r">&#8377;15,000</td><td class="r">&#8377;15,000</td></tr><tr><td class="ind">Creche Electricity Reversal</td><td class="r">&#8377;480</td><td class="r">&#8377;480</td></tr><tr><td class="ind">Adonmo Rental</td><td class="r">&#8377;9,000</td><td class="r">&#8377;9,000</td></tr><tr><td class="ind">FD/Account Interest</td><td class="r">&#8377;76,020</td><td class="r">&#8377;76,020</td></tr><tr><td class="ind">Ladies Salon Rental</td><td class="r">&#8377;3,000</td><td class="r">&#8377;3,000</td></tr><tr><td class="ind">Ladies Salon Electricity Reversal</td><td class="r">&#8377;412</td><td class="r">&#8377;480</td></tr><tr><td class="ind">Laundro</td><td class="r">&#8377;5,000</td><td class="r">&#8377;5,000</td></tr><tr><td class="ind">Laundro Electricity Reversal</td><td class="r">&#8377;13,230</td><td class="r">&#8377;8,212</td></tr><tr><td class="ind">Men's Salon Electricity Reversal</td><td class="r">&#8377;360</td><td class="r emp">—</td></tr><tr><td class="ind">Men's Salon Rental</td><td class="r">&#8377;5,000</td><td class="r">&#8377;5,000</td></tr><tr><td class="ind">Car Cleaner Income</td><td class="r">&#8377;3,814</td><td class="r">&#8377;3,814</td></tr><tr><td class="ind">Vegetable Vendor Rental</td><td class="r">&#8377;1,250</td><td class="r">&#8377;1,250</td></tr><tr><td class="ind">Act Electricity Reimbursement</td><td class="r">&#8377;1,890</td><td class="r">&#8377;1,890</td></tr><tr><td class="ind">Tilt Rental+Electricity Reimbursement</td><td class="r emp">—</td><td class="r">&#8377;8,273</td></tr><tr><td class="ind">Boutique Rental</td><td class="r">&#8377;8,000</td><td class="r">&#8377;8,000</td></tr><tr><td class="ind">Boutique Electricity Reimbursement</td><td class="r">&#8377;690</td><td class="r">&#8377;532</td></tr><tr><td class="ind">Karate Coaching</td><td class="r">&#8377;480</td><td class="r">&#8377;480</td></tr><tr><td class="ind">Music Coaching</td><td class="r">&#8377;500</td><td class="r">&#8377;2,870</td></tr><tr><td class="ind">Swimming Coaching</td><td class="r">&#8377;1,020</td><td class="r emp">—</td></tr><tr><td class="ind">Sup-Sip Rental</td><td class="r">&#8377;2,000</td><td class="r">&#8377;2,000</td></tr><tr><td class="ind">Account Balance as on Month Closing</td><td class="r">&#8377;77,538</td><td class="r">&#8377;11,739</td></tr>
+    <tr class="sinc"><td><strong>Total Income Offset</strong></td>
+      <td class="r">&#8377;2,90,544</td>
+      <td class="r">&#8377;2,30,017</td></tr>
+    <tr class="net"><td><strong>Net Monthly Cost</strong></td>
+      <td class="r">&#8377;15,67,786</td>
+      <td class="r">&#8377;16,68,415</td></tr>
+    <tr class="psf"><td style="text-align:left;font-size:13px;">&#8377; / Sq.Ft.</td>
+      <td>&#8377;3.9</td><td>&#8377;4.2</td></tr>
+  </tbody>
+</table>
+<div class="ca am"><strong class="am">Note:</strong> Pending dues for UIS &amp; Painter approx. &#8377;3.8 lacs carried over from previous committee. Discussions ongoing to settle in instalments.</div>
+<div class="ca ye"><strong class="ye">&#9432; July 2026 billing note:</strong> Maintenance for July charged at &#8377;3.9 / sq.ft. instead of the calculated &#8377;4.2, considering some pending recoveries expected in July.</div><div class="ca pk"><strong class="pk">&#128200; Outlook:</strong> Maintenance expected to be higher in August due to upcoming Kone AMC payment and Water Tanks cleaning scheduled this month (approx. &#8377;83K).</div>
+</section><section id="collections" class="tp">
+<div class="ey">Month-on-Month Status</div>
+<div class="st">Maintenance Billing vs Collection</div>
+<div class="cards" style="grid-template-columns:repeat(3,1fr)">
+  <div class="card g"><div class="cn">393</div><div class="cl">Total Units</div></div>
+  <div class="card g"><div class="cn">392</div><div class="cl">Units Current</div><div class="cs">No pending dues</div></div>
+  <div class="card g"><div class="cn">99.7%</div><div class="cl">Collection Rate</div><div class="cs">June</div></div>
+</div>
+<table class="dc">
+  <thead><tr><th>Month</th><th class="r">Invoiced (&#8377;)</th>
+    <th class="r">Collected (&#8377;)</th><th class="r">Balance (&#8377;)</th>
+    <th class="r">Collection %</th></tr></thead>
+  <tbody><tr><td><span class="dcm">May</span></td><td class="r">&#8377;15,52,302</td><td class="r">&#8377;15,47,856</td><td class="r">&#8377;4,446</td><td class="r"><span class="pill">99.7%</span></td></tr><tr><td><span class="dcm">June</span></td><td class="r">&#8377;15,52,302</td><td class="r">&#8377;15,47,856</td><td class="r">&#8377;4,446</td><td class="r"><span class="pill">99.7%</span></td></tr></tbody>
+</table>
+
+<div class="ca rd" style="margin-top:20px;">
+  <div class="cah">&#9888;&#65039; PENDING DUES &mdash; 1 UNIT</div>
+  <table class="pd"><thead><tr>
+    <th>Unit</th><th>Owner</th>
+    <th class="r">Penalty</th><th class="r">Ledger Dues</th><th class="r">Total</th>
+  </tr></thead><tbody><tr><td><div class="pd-apt">TOWER A-309</div><div class=pd-note>Repossessed by bank &#8212; dues to be cleared on sale of flat.</div></td><td>John Christian McCoy</td><td class="r">&#8377;17,500</td><td class="r">&#8377;1,47,972</td><td class="r">&#8377;1,65,472</td></tr></tbody></table>
+</div>
+<div class="ca df" style="margin-top:10px;">
+  <strong class="am">Request to defaulters:</strong> Please clear pending dues by raising a payment on MyGate. For queries or payment plans, write to tgtsecretary@gmail.com. Continued non-payment will attract late fees and may affect amenities use as per society bye-laws.
+</div>
+</section><section id="helpdesk" class="tp">
+<div class="ey">Resident Helpdesk &mdash; June 2026</div>
+<div class="st">Helpdesk Summary</div>
+<div class="cards">
+  <div class="card g"><div class="cn">148</div><div class="cl">Total Tickets</div><div class="cs">Raised this month</div></div>
+  <div class="card g"><div class="cn">135</div><div class="cl">Resolved</div><div class="cs">91% resolution rate</div></div>
+  <div class="card a"><div class="cn">13</div><div class="cl">Open / In Progress</div><div class="cs">9% of total</div></div>
+  <div class="card b"><div class="cn">91%</div><div class="cl">Resolution Rate</div></div>
+</div>
+<div style="background:var(--white);border:1px solid var(--s200);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow);">
+  <div style="font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--s600);margin-bottom:12px;">By Category</div>
+  <div class="cat-row"><div class="cat-n">Plumbing</div><div class="cat-bw"><div class="cat-b" style="width:100%"></div></div><div class="cat-c">87</div><div class="cat-p">59%</div></div><div class="cat-row"><div class="cat-n">Electrical</div><div class="cat-bw"><div class="cat-b" style="width:42%"></div></div><div class="cat-c">37</div><div class="cat-p">25%</div></div><div class="cat-row"><div class="cat-n">Other</div><div class="cat-bw"><div class="cat-b" style="width:11%"></div></div><div class="cat-c">10</div><div class="cat-p">7%</div></div><div class="cat-row"><div class="cat-n">Seepage</div><div class="cat-bw"><div class="cat-b" style="width:9%"></div></div><div class="cat-c">8</div><div class="cat-p">5%</div></div><div class="cat-row"><div class="cat-n">Payment</div><div class="cat-bw"><div class="cat-b" style="width:2%"></div></div><div class="cat-c">2</div><div class="cat-p">1%</div></div><div class="cat-row"><div class="cat-n">Clubhouse</div><div class="cat-bw"><div class="cat-b" style="width:1%"></div></div><div class="cat-c">1</div><div class="cat-p">1%</div></div><div class="cat-row"><div class="cat-n">UPVC</div><div class="cat-bw"><div class="cat-b" style="width:1%"></div></div><div class="cat-c">1</div><div class="cat-p">1%</div></div><div class="cat-row"><div class="cat-n">Security</div><div class="cat-bw"><div class="cat-b" style="width:1%"></div></div><div class="cat-c">1</div><div class="cat-p">1%</div></div><div class="cat-row"><div class="cat-n">Ground Floor Common area</div><div class="cat-bw"><div class="cat-b" style="width:1%"></div></div><div class="cat-c">1</div><div class="cat-p">1%</div></div>
+</div>
+</section><section id="community" class="tp">
+<div class="ey">June 2026 Highlights</div>
+<div class="st">Community &amp; Infrastructure</div>
+
+<div class="hl-cat">
+  <div class="hl-cat-head">
+    <span class="hl-cat-icon">🎉</span>
+    <span class="hl-cat-title">Community Events</span>
+  </div>
+  <div class="hl-items"><div class="hl-item"><span class="dot"></span>Badminton Tournament held in partnership with Rainbow Hospitals</div><div class="hl-item"><span class="dot"></span>Tiffin Tales — culinary competition organised by TGT Cultural Team</div><div class="hl-item"><span class="dot"></span>Flea Market & Games organised on the occasion of Father's Day</div><div class="hl-item"><span class="dot"></span>Tambola Fiesta launched — 1st Edition held on 28th June</div></div>
+</div>
+<div class="hl-cat">
+  <div class="hl-cat-head">
+    <span class="hl-cat-icon">🏥</span>
+    <span class="hl-cat-title">Health & Wellness</span>
+  </div>
+  <div class="hl-items"><div class="hl-item"><span class="dot"></span>KIMS Hospital MOU signed for partnership with TGT</div><div class="hl-item"><span class="dot"></span>Free Cardiac Health Screening Camp by KIMS Hospital</div><div class="hl-item"><span class="dot"></span>Free Pediatric Camp organised by Kauvery Hospital</div></div>
+</div>
+<div class="hl-cat">
+  <div class="hl-cat-head">
+    <span class="hl-cat-icon">📱</span>
+    <span class="hl-cat-title">Infrastructure</span>
+  </div>
+  <div class="hl-items"><div class="hl-item"><span class="dot"></span>TGT Communication Groups moved from Telegram to WhatsApp</div></div>
+</div>
+<div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--s600);margin-top:24px;margin-bottom:10px;padding-top:16px;border-top:1px solid var(--s200);">Event Photos &mdash; June 2026</div><div class="photo-grid"><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Flea%20Market%20Stalls%201.jpeg" alt="Flea Market — Father's Day" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Flea Market — Father's Day</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Flea%20Market%20Stalls%202.jpeg" alt="Flea Market Stalls" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Flea Market Stalls</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/KIMS%20hospital%20Camp.jpg" alt="KIMS Cardiac Screening Camp" onerror="this.parentNode.style.display='none'"><div class="pw-cap">KIMS Cardiac Screening Camp</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Kauvery%20Pediatric%20Camp_12th%20June" alt="Kauvery Pediatric Camp" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Kauvery Pediatric Camp</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Tambola%201.jpeg" alt="Tambola Fiesta — 1st Edition" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Tambola Fiesta — 1st Edition</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Tambola%202.jpeg" alt="Tambola Fiesta" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Tambola Fiesta</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Tiffin%20Tales%201.jpg" alt="Tiffin Tales Competition" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Tiffin Tales Competition</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Tiffin%20Tales%20Winner%201.jpg" alt="Tiffin Tales — Winner" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Tiffin Tales — Winner</div></div><div class="pw"><img src="file:///Users/abhaykapoor/Library/Mobile%20Documents/com~apple~CloudDocs/Claude_TGT/Event%20Photos/June/Tiffin%20Tales%20Winner%202.jpg" alt="Tiffin Tales — Winner" onerror="this.parentNode.style.display='none'"><div class="pw-cap">Tiffin Tales — Winner</div></div></div>
+</section></main>
+<footer class="sf">
+  <span>The Green Terraces &nbsp;&middot;&nbsp; TGT Apartment Owners Association &nbsp;&middot;&nbsp; Electronic City Phase 1, Bangalore</span>
+  <span>tgtsecretary@gmail.com</span>
+</footer>
+<script>
+const btns=document.querySelectorAll('.tb'),panes=document.querySelectorAll('.tp');
+function go(id){btns.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));panes.forEach(p=>p.classList.toggle('active',p.id===id));history.replaceState(null,'','#'+id);}
+btns.forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+const h=location.hash.slice(1);if(h&&document.getElementById(h))go(h);
+</script>
+</body>
+</html>
